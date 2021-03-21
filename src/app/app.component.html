@@ -50,16 +50,16 @@
   <mat-card>
     <mat-card-title>Add New Habit </mat-card-title>
     <hr />
-    <form>
+    <form [formGroup]="habitForm" (ngSubmit)="onSubmit()">
       <mat-card-content>
         <mat-form-field appearance="fill">
           <mat-label>Title</mat-label>
-          <input matInput />
+          <input matInput formControlName="name" />
         </mat-form-field>
         <br />
         <mat-form-field appearance="fill">
           <mat-label>Frequency</mat-label>
-          <mat-select>
+          <mat-select formControlName="frequency">
             <mat-option value="Daily">Daily</mat-option>
             <mat-option value="Weekly">Weekly</mat-option>
             <mat-option value="Monthly">Monthly</mat-option>
@@ -70,6 +70,7 @@
           <mat-label>Description</mat-label>
           <textarea
             matInput
+            formControlName="description"
             placeholder="Why is this habit important to you?"
           ></textarea>
         </mat-form-field>
