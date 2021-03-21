@@ -8,6 +8,8 @@ import { Habit } from './models/habit';
 })
 
 export class AppComponent {
+  public adding = false;
+
   public habits: Habit[] = [
     <Habit>{
       name: 'Read news from Dantri 10 minutes',
