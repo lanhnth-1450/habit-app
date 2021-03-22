@@ -6,12 +6,12 @@
 </div>
 
 
-<div class="all-habits" *ngIf="!adding">
+<div class="all-habits" *ngIf="!adding && !editing">
   <h1>All Habits</h1>
   <button mat-raised-button color="accent" (click)="adding = !adding">
     Add New Habit
   </button>
-  <div *ngFor="let habit of habits">
+  <div *ngFor="let habit of habits; let i = index;">
     <mat-card>
       <mat-card-title>
         <mat-icon
@@ -27,6 +27,7 @@
         <mat-icon
           class="habit-icon"
           color="primary"
+          (click)="setEditForm(habit, i)"
           >edit</mat-icon
         >
         <mat-icon class="habit-icon" color="warn"
@@ -46,20 +47,20 @@
   </div>
 </div>
 
-<div class="add-form-container" *ngIf="adding">
+<div class="add-form-container" *ngIf="adding || editing">
   <mat-card>
     <mat-card-title>Add New Habit </mat-card-title>
     <hr />
-    <form>
+    <form [formGroup]="habitForm" (ngSubmit)="onSubmit()">
       <mat-card-content>
         <mat-form-field appearance="fill">
           <mat-label>Title</mat-label>
-          <input matInput />
+          <input matInput formControlName="name" />
         </mat-form-field>
         <br />
         <mat-form-field appearance="fill">
           <mat-label>Frequency</mat-label>
-          <mat-select>
+          <mat-select formControlName="frequency">
             <mat-option value="Daily">Daily</mat-option>
             <mat-option value="Weekly">Weekly</mat-option>
             <mat-option value="Monthly">Monthly</mat-option>
@@ -70,6 +71,7 @@
           <mat-label>Description</mat-label>
           <textarea
             matInput
+            formControlName="description"
             placeholder="Why is this habit important to you?"
           ></textarea>
         </mat-form-field>
