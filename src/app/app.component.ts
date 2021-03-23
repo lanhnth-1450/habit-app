@@ -56,4 +56,15 @@ export class AppComponent {
     this.editing = true;
     this.editingIndex = index;
   }
+
+  public onDelete(index: number) {
+    this.habits.splice(index, 1);
+  }
+
+  public exitForm() {
+    this.adding = false;
+    this.editing = false;
+    this.habitForm.reset();
+  }
+
 }
