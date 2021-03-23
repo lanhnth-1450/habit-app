@@ -30,7 +30,7 @@
           (click)="setEditForm(habit, i)"
           >edit</mat-icon
         >
-        <mat-icon class="habit-icon" color="warn"
+        <mat-icon class="habit-icon" color="warn" (click)="onDelete(i)"
           >remove_circle</mat-icon
         >
       </div>
@@ -78,7 +78,7 @@
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button color="accent" type="submit">Save</button>
-        <button mat-raised-button>Cancel</button>
+        <button mat-raised-button (click)="exitForm()">Cancel</button>
       </mat-card-actions>
     </form>
   </mat-card>
